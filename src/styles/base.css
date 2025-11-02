@@ -1,330 +1,258 @@
 /* ============================================================
    ⚙️ TAILWIND CAMADAS
-   ============================================================ */
+============================================================ */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ============================================================
    🎨 TOKENS / VARIÁVEIS DE DESIGN
-   ============================================================ */
-:root {
-  /* Base */
-  --bg: #f6f8f9;
-  --surface: #ffffff;
-  --surface-2: #f3f5f8;
+============================================================ */
+:root{
+  --bg:#f6f8f9;
+  --surface:#ffffff;
+  --surface-2:#f3f5f8;
 
-  /* Brand (Light+) */
-  --top: #009a93;
-  --side: #0d5452;
-  --accent: #f7a941;
+  --top:#009a93;
+  --side:#0d5452;
+  --accent:#f7a941;
 
-  /* Texto e Linhas */
-  --text: #0f172a;
-  --muted: #6b7785;
-  --heading: #334155;
-  --line: #e5e7eb;
-  --line-2: #d7dbe3;
+  --text:#0f172a;
+  --muted:#6b7785;
+  --heading:#334155;
+  --line:#e5e7eb;
+  --line-2:#d7dbe3;
 
-  /* Medidas principais */
-  --topbar-h: 68px;
-  --sidebar-w: 256px;
-  --input-h: 38px;
-  --container: 1100px;
+  --topbar-h:68px;
+  --sidebar-w:256px;
+  --input-h:38px;
+  --container:1100px;
 
-  /* Layout Helpers */
-  --radius: 10px;
-  --radius-lg: 12px;
-  --shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.08);
+  --radius:10px;
+  --radius-lg:12px;
+  --shadow:0 1px 2px rgba(16,24,40,.04), 0 1px 3px rgba(16,24,40,.08);
 
-  /* Tipos */
-  --fs-12: 0.75rem;
-  --fs-13: 0.8125rem;
-  --fs-14: 0.875rem;
-  --fs-16: 1rem;
+  --fs-12:.75rem;
+  --fs-13:.8125rem;
+  --fs-14:.875rem;
+  --fs-16:1rem;
 
-  /* Footer */
-  --footer-bg: #2f3438;
-  --footer-fg: #ffffff;
+  --footer-bg:#2f3438;
+  --footer-fg:#fff;
 
-  /* 🔧 Auxiliares p/ topbar */
-  --chev: 34px;
-  --gap: 12px;
-  --logo-w: 96px;
+  --chev:34px;
+  --gap:12px;
+  --logo-w:96px;
 
-  /* ====== Tokens finos (cards/elevação/chip) ====== */
-  --card-border: #F2F4F7;                         /* quase imperceptível */
-  --hairline: rgba(15,23,42,.06);
-  --elev-1: 0 1px 3px rgba(16,24,40,.06);         /* cartões/inner */
-  --elev-hero: 0 4px 14px rgba(16,24,40,.06);     /* painel externo */
-  --chip-bg: rgba(13,84,82,.08);
-  --chip-br: rgba(13,84,82,.12);
-  --chip-fg: #0D5452;
+  --card-border:#F2F4F7;
+  --hairline:rgba(15,23,42,.06);
+  --elev-1:0 1px 3px rgba(16,24,40,.06);
+  --elev-hero:0 4px 14px rgba(16,24,40,.06);
+  --chip-bg:rgba(13,84,82,.08);
+  --chip-br:rgba(13,84,82,.12);
+  --chip-fg:#0D5452;
 }
 
 /* ============================================================
    🧭 BASE / RESET
-   ============================================================ */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body, #root { height: 100%; }
-body {
-  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
+============================================================ */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body,#root{height:100%}
+body{
+  font-family:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
 }
-img { max-width: 100%; display: block; }
-button { background: none; border: 0; cursor: pointer; }
-:focus-visible { outline: 3px solid rgba(0, 154, 147, 0.28); outline-offset: 2px; }
-.muted { color: var(--muted); }
-.h1 { font-size: 1.625rem; line-height: 1.3; color: var(--heading); font-weight: 600; }
+img{max-width:100%;display:block}
+button{background:none;border:0;cursor:pointer}
+:focus-visible{outline:3px solid rgba(0,154,147,.28);outline-offset:2px}
+.muted{color:var(--muted)}
+.h1{font-size:1.625rem;line-height:1.3;color:var(--heading);font-weight:600}
 
 /* ============================================================
    💠 TOPBAR
-   ============================================================ */
-.topbar {
-  position: fixed; top: 0; left: 0; right: 0;
-  height: var(--topbar-h);
-  background: var(--top); color: #fff;
-  display: flex; align-items: center;
-  padding-left: calc(var(--sidebar-w) + var(--chev) + var(--gap) + 16px);
-  padding-right: 20px;
-  box-shadow: 0 1px 2px rgba(0,0,0,.05);          /* mais discreta */
-  z-index: 40;
+============================================================ */
+.topbar{
+  position:fixed;inset:0 0 auto 0;height:var(--topbar-h);
+  background:var(--top);color:#fff;display:flex;align-items:center;
+  padding-left:calc(var(--sidebar-w) + var(--chev) + var(--gap) + 16px);
+  padding-right:20px;box-shadow:0 1px 2px rgba(0,0,0,.05);z-index:40;
 }
-.topbar-toggle {
-  position: absolute; left: calc(var(--sidebar-w) - 18px); top: 50%;
-  transform: translateY(-50%);
-  width: var(--chev); height: var(--chev);
-  border-radius: 50%; background: var(--side);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  display: flex; align-items: center; justify-content: center; color: #fff;
-  z-index: 55; transition: background .15s ease, border-color .15s ease;
+.topbar-toggle{
+  position:absolute;left:calc(var(--sidebar-w) - 18px);top:50%;transform:translateY(-50%);
+  width:var(--chev);height:var(--chev);border-radius:50%;background:var(--side);
+  border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;color:#fff;
+  z-index:55;transition:background .15s,border-color .15s;
 }
-.topbar-toggle:hover { background: #11736e; border-color: rgba(255, 255, 255, 0.65); }
-.topbar-toggle svg { width: 18px; height: 18px; color: #fff; }
-.topbar-brand {
-  position: absolute; top: 50%; left: 16px; transform: translateY(-48%);
-  display: flex; align-items: center; z-index: 50;
-}
-.topbar-brand img { height: 36px; width: auto; object-fit: contain; pointer-events: none; user-select: none; }
-.topbar::after {
-  content: ''; position: absolute; top: -1px; left: calc(var(--sidebar-w) - 2px);
-  width: 2px; height: calc(100% + 1px); background: #fff; z-index: 44;
-}
+.topbar-toggle:hover{background:#11736e;border-color:rgba(255,255,255,.65)}
+.topbar-toggle svg{width:18px;height:18px;color:#fff}
+.topbar-brand{position:absolute;top:50%;left:16px;transform:translateY(-48%);display:flex;align-items:center;z-index:50}
+.topbar-brand img{height:36px;width:auto;object-fit:contain;pointer-events:none;user-select:none}
+.topbar::after{content:"";position:absolute;top:-1px;left:calc(var(--sidebar-w) - 2px);width:2px;height:calc(100% + 1px);background:#fff;z-index:44}
 
 /* ============================================================
    🟩 SIDEBAR
-   ============================================================ */
-.sidebar {
-  position: fixed; top: var(--topbar-h); left: 0;
-  width: var(--sidebar-w); height: calc(100vh - var(--topbar-h));
-  background: var(--side); color: #eaf6f5;
-  border-right: 2px solid #ffffff;               /* barrinha branca */
-  padding: 18px 14px;
-  overflow-y: auto; scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
-  z-index: 50; transition: width .25s ease, border-color .25s ease;
-  box-shadow: none;                               /* sem competição visual */
+============================================================ */
+.sidebar{
+  position:fixed;top:var(--topbar-h);left:0;width:var(--sidebar-w);height:calc(100vh - var(--topbar-h));
+  background:var(--side);color:#eaf6f5;border-right:2px solid #fff;padding:18px 14px;
+  overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.15) transparent;
+  z-index:50;transition:width .25s,border-color .25s;box-shadow:none;
 }
-.sidebar nav { display: flex; flex-direction: column; gap: 18px; }
-.sidebar h2 {
-  font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: .08em;
-  color: rgba(255,255,255,.55); margin: 20px 8px 8px; padding-left: 0;
+.sidebar nav{display:flex;flex-direction:column;gap:18px}
+.sidebar h2{font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.55);margin:20px 8px 8px}
+.sidebar button,.sidebar a{
+  display:flex;align-items:center;justify-content:space-between;width:100%;min-height:40px;padding:0 12px;gap:12px;
+  border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.85);transition:background .15s,color .15s;
 }
-.sidebar button, .sidebar a {
-  display: flex; align-items: center; justify-content: space-between;
-  width: 100%; min-height: 40px; padding: 0 12px; gap: 12px;
-  border-radius: 6px; font-size: 14px; font-weight: 500;
-  color: rgba(255,255,255,.85);
-  transition: background .15s linear, color .15s linear;
-}
-.sidebar button:hover, .sidebar a:hover { background: rgba(255,255,255,.06); color: rgba(255,255,255,.95); }
-.sidebar svg { width: 18px; height: 18px; opacity: .9; color: currentColor; }
-.sidebar .is-active { background: rgba(255,255,255,.08); color:#fff; font-weight:600; border-left:0; padding-left:12px; }
-.sidebar .chev { transition: transform .15s linear; }
-.sidebar .chev.is-open { transform: rotate(90deg); }
-.sidebar ul ul { margin-left: 0; padding-left: 0; border-left: 0; }
-.sidebar ul ul a, .sidebar ul ul button {
-  padding-left: 28px; min-height: 40px; font-size: 14px; color: rgba(255,255,255,.85);
-}
-.sidebar ul ul a:hover, .sidebar ul ul button:hover { background: rgba(255,255,255,.06); color: rgba(255,255,255,.95); }
-
-/* ===== Guia/trilho dos filhos (alinhado ao centro do ícone do grupo) ===== */
-:root{
-  --sb-pad-x: 12px;    /* padding horizontal dos itens */
-  --sb-icon: 18px;     /* tamanho do ícone do grupo */
-  --sb-gap: 12px;      /* gap ícone-rótulo */
-  --rail-left: calc(var(--sb-pad-x) + (var(--sb-icon) / 2));
-}
-.group { position: relative; }
-.group__title { margin: 20px 8px 8px; }
-.group__btn{
-  display:flex; align-items:center; justify-content:space-between;
-  width:100%; min-height:40px; padding:0 var(--sb-pad-x);
-  font-size:12px; font-weight:500; text-transform:uppercase; letter-spacing:.08em;
-  color:rgba(255,255,255,.55);
-}
-.group__children{ position: relative; margin: 0; padding: 0; }
-.group__children::before{
-  content:""; position:absolute; left: var(--rail-left); top: 6px; bottom: 6px;
-  width:1px; background: rgba(255,255,255,.18); pointer-events:none; z-index:0;
-}
-.group__children .sidebar__item{ position: relative; z-index:1; padding-left: calc(var(--sb-pad-x) + var(--sb-icon) + var(--sb-gap)); }
-.group__children .sidebar__item svg{ display:none; }
+.sidebar button:hover,.sidebar a:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.95)}
+.sidebar svg{width:18px;height:18px;opacity:.9;color:currentColor}
+.sidebar .is-active{background:rgba(255,255,255,.08);color:#fff;font-weight:600}
 
 /* ============================================================
-   🧩 MAIN (conteúdo central)
-   ============================================================ */
-main {
-  margin-left: var(--sidebar-w);
-  background: var(--bg);
-  min-height: 100vh;
-  position: relative;
-  z-index: 1;
-  transition: margin-left 0.25s ease;
-}
+   🧩 MAIN
+============================================================ */
+main{margin-left:var(--sidebar-w);background:var(--bg);min-height:100vh;position:relative;z-index:1;transition:margin-left .25s}
 
 /* ============================================================
-   🧱 PAINÉIS (CARDS GENÉRICOS)
-   ============================================================ */
-.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 1.25rem; width: 100%; }
-.panel--list { padding: 0; overflow: hidden; }
-.panel__header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--line); background: #fff; font-weight: 600; color: var(--heading); }
-.panel__filters { background: #f9fafb; padding: 1rem 1.5rem; border-bottom: 1px solid var(--line); }
-.panel__table { background: var(--surface); padding: 1rem 1.5rem; }
-.panel__pagin { background: var(--surface); padding: 0.875rem 1.5rem; border-top: 1px solid var(--line); }
-
-/* ============================================================
-   🧰 FILTROS
-   ============================================================ */
-.filters { display:flex; flex-wrap:wrap; gap:1rem; align-items:end; }
-.filters label { display:flex; flex-direction:column; }
-.filters .label { font-size: var(--fs-13); font-weight: 500; color: var(--muted); margin-bottom: 4px; }
-.filters select, input[type='text'], input[type='search']{
-  height: var(--input-h);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
-  padding: 0 10px;
-  font-size: var(--fs-14);
-  color: var(--text);
-  transition: border .15s ease, box-shadow .15s ease;
-}
-.filters select:focus { border-color: var(--side); box-shadow: 0 0 0 2px rgba(13, 84, 82, 0.15); }
-
-/* ============================================================
-   🧾 TABELA
-   ============================================================ */
-.table { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); }
-table { width: 100%; border-collapse: collapse; font-size: var(--fs-13); }
-thead th { background: #f8f9fa; color: var(--muted); font-weight: 600; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--line); }
-tbody td { padding: 12px 14px; border-bottom: 1px solid #eef2f6; vertical-align: middle; color: var(--text); }
-tbody tr:hover { background: #f9fafb; transition: background .15s ease; }
-
-/* Badges */
-.badge { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid transparent; }
-.badge--ativo { background: #e8f6ee; color: #1f8a53; border-color: #beebd1; }
-.badge--rascunho { background: #fff7d6; color: #8a6d00; border-color: #f4e2a1; }
-.badge--arquivado { background: #eceff3; color: #4b5563; border-color: #d7dbe3; }
-
-/* ============================================================
-   🔢 PAGINAÇÃO
-   ============================================================ */
-.pagination { display:flex; align-items:center; justify-content:center; gap:10px; }
-.pagination .pages { display:flex; align-items:center; gap:8px; }
-.page-btn {
-  height: 32px; min-width: 32px; border-radius: 8px; border: 1px solid var(--line);
-  font-size: 12px; line-height: 1; display: grid; place-items: center; color: var(--text); background: #fff; transition: all .15s ease;
-}
-.page-btn:hover { background: #f3f4f6; }
-.page-btn.is-current { background: var(--side); color: #fff; border-color: var(--side); }
-
-/* ============================================================
-   🦶 FOOTER
-   ============================================================ */
-.site-footer { margin-top: 24px; background: var(--footer-bg); color: var(--footer-fg); text-align: center; padding: 14px 18px; font-size: 12px; border-top: 1px solid #1e2124; }
-
-/* ============================================================
-   📱 RESPONSIVIDADE
-   ============================================================ */
-@media (max-width: 1200px) {
-  .filters { gap: .75rem; flex-direction: column; align-items: flex-start; }
-}
-@media (max-width: 640px) {
-  thead th, tbody td { padding: 8px 10px; }
-}
-
-/* ============================================================
-   🧊 PAINEL “CRIAR E GERENCIAR” (dupla camada corrigida)
-   ============================================================ */
-/* Externo: sem borda (evita “sanduíche”) */
+   🧊 PAINEL “CRIAR E GERENCIAR” — card ÚNICO
+============================================================ */
 .panel-hero{
-  background:#fff;
-  border:none;
-  border-radius:16px;
-  box-shadow: var(--elev-hero);
-  padding:22px 24px;
+  background:#fff;border:0;border-radius:12px;box-shadow:0 6px 16px rgba(16,24,40,.08);padding:20px 24px;
 }
-/* Interno: UMA borda hairline + sombra mínima + raio casado */
 .panel-hero__inner{
-  background:#fff;
-  border:1px solid var(--hairline);
-  border-radius:14px;
-  box-shadow: var(--elev-1);
-  padding:26px 28px;
+  background:transparent;border:0;border-radius:0;box-shadow:none;padding:0;
 }
 
 /* Cartões de ação */
 .action-card{
-  display:flex; align-items:center; gap:16px;
-  width:100%; text-align:left;
-  background:#fff;
-  border:1px solid var(--hairline);
-  border-radius:12px;
-  padding:18px 20px;
-  box-shadow: var(--elev-1);
-  transition: box-shadow .15s ease, border-color .15s ease, transform .02s ease;
+  display:flex;align-items:center;gap:16px;width:100%;text-align:left;background:#fff;
+  border:1px solid var(--hairline);border-radius:12px;padding:18px 20px;box-shadow:var(--elev-1);
+  transition:box-shadow .15s,border-color .15s,transform .02s;
 }
-.action-card:hover{ box-shadow: 0 6px 18px rgba(16,24,40,.08); border-color:#E6EBF1; }
-.action-card:focus-visible{ outline: 2px solid rgba(0,154,147,.25); outline-offset: 2px; }
-
-/* Chip “+” discreto e alinhado */
+.action-card:hover{box-shadow:0 6px 18px rgba(16,24,40,.08);border-color:#E6EBF1}
 .action-card__chip{
-  display:grid; place-items:center;
-  width:32px; height:32px;
-  border-radius:999px;
-  background: var(--chip-bg);
-  border:1px solid var(--chip-br);
-  color: var(--chip-fg);
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1;
-  transform: translateY(-.5px); /* micro-ajuste de baseline */
+  display:grid;place-items:center;width:32px;height:32px;border-radius:999px;background:var(--chip-bg);border:1px solid var(--chip-br);color:var(--chip-fg);font-weight:600;font-size:16px;line-height:1;
+}
+.action-card__text{display:flex;flex-direction:column;gap:2px}
+.action-card__title{font-size:15.5px;font-weight:600;color:#0f172a;line-height:1.25}
+.action-card__desc{font-size:13px;color:rgba(15,23,42,.52)}
+
+/* ============================================================
+   🎯 Card "Formulários" — ajustes finos (ref)
+============================================================ */
+section[aria-label="Lista de formulários"] .card-head{
+  background:#fff !important;
+}
+section[aria-label="Lista de formulários"] .filters-row{background:#fff!important;border-color:var(--card-border)!important}
+
+/* Tabela dentro do card: sem mini-card */
+.forms-card .table{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+.forms-card thead th{background:#F8FAFC!important;border-bottom:1px solid var(--card-border)!important}
+.forms-card tbody td{border-bottom:1px solid #F1F5F9!important}
+.forms-card tbody tr:hover{background:#FAFBFC!important}
+
+/* ============================================================
+   🧾 TABELA (base)
+============================================================ */
+.table{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;font-size:var(--fs-13)}
+thead th{background:#f8f9fa;color:var(--muted);font-weight:600;padding:10px 14px;text-align:left;border-bottom:1px solid var(--line)}
+tbody td{padding:12px 14px;border-bottom:1px solid #eef2f6;vertical-align:middle;color:var(--text)}
+tbody tr:hover{background:#f9fafb;transition:background .15s}
+
+/* Badges */
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:500;border:1px solid transparent}
+.badge--ativo{background:#EAF7F0;color:#1C7C4D;border-color:#CDEAD7}
+
+/* ============================================================
+   🔢 PAGINAÇÃO (fora da tabela, colada ao card)
+============================================================ */
+.panel__pagin{
+  background:#fff!important;border-top:1px solid var(--card-border)!important;padding:12px 14px!important;
+  border-bottom-left-radius:12px!important;border-bottom-right-radius:12px!important;
+}
+.pagination{display:flex;align-items:center;justify-content:center;column-gap:14px;padding:10px 12px}
+.pagination .pages{display:flex;align-items:center;gap:18px}
+.page-link{display:flex;align-items:center;gap:6px;padding:2px 4px;background:transparent;border:none;color:rgba(15,23,42,.62);font-size:13px;line-height:1}
+.page-link .caret{width:12px;height:12px;color:#94A3B8}
+.page-link:hover{color:#1F2937}
+.page-link:hover .caret{color:#64748B}
+.page-btn{
+  height:32px;min-width:32px;border-radius:8px;border:1px solid var(--card-border);
+  background:#fff;font-size:12px;line-height:1;display:grid;place-items:center;color:#334155;
+  transition:background .15s,border-color .15s;
+}
+.page-btn:hover{background:#F3F4F6}
+.page-btn.is-current,
+.page-btn[aria-current="page"]{background:#F8FAFC;color:#0F172A;border-color:#D8E2EB;font-weight:600}
+
+/* ============================================================
+   🦶 FOOTER
+============================================================ */
+.site-footer{margin-top:24px;background:var(--footer-bg);color:var(--footer-fg);text-align:center;padding:14px 18px;font-size:12px;border-top:1px solid #1e2124}
+
+/* ============================================================
+   📱 RESPONSIVIDADE
+============================================================ */
+@media (max-width:1200px){.filters{gap:.75rem;flex-direction:column;align-items:flex-start}}
+@media (max-width:640px){thead th,tbody td{padding:8px 10px}}
+
+/* ============================================================
+   🔧 RESTAURAÇÃO DOS "TRILHOS" DA SIDEBAR
+   (colocar NO FINAL do base.css)
+============================================================ */
+
+/* Tokens usados pelo cálculo do trilho (caso tenham sido perdidos em merges) */
+:root{
+  --sb-pad-x: 12px;   /* padding horizontal dos itens */
+  --sb-icon: 18px;    /* tamanho do ícone do grupo */
+  --sb-gap: 12px;     /* espaço entre ícone e rótulo */
+  --rail-left: calc(var(--sb-pad-x) + (var(--sb-icon) / 2));
 }
 
-/* Tipografia dos blocos */
-.action-card__text{ display:flex; flex-direction:column; gap:2px; }
-.action-card__title{ font-size:15.5px; font-weight:600; color:#0f172a; line-height:1.25; }
-.action-card__desc{ font-size:13px; color: rgba(15,23,42,.52); } /* mais muted */
-
-/* ===== FIX: Painel de Ações sem camada dupla/“inset” ===== */
-.panel-hero{
-  /* único card externo */
-  background: #fff;
-  border: 0;                     /* remove contorno visível */
-  border-radius: 12px;           /* raio único */
-  box-shadow: 0 6px 16px rgba(16,24,40,.08); /* sombra suave e uniforme */
-  padding: 20px 24px;            /* respiro parecido com a ref. */
+/* ===== Versão semântica (com .group__children / .sidebar__item) ===== */
+.sidebar .group__children{ position: relative; }
+.sidebar .group__children::before{
+  content:"";
+  position:absolute;
+  left: var(--rail-left);
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: rgba(255,255,255,.18);   /* cor do trilho */
+  pointer-events:none;
+  z-index: 0;
+}
+.sidebar .group__children .sidebar__item{
+  position: relative;
+  z-index: 1;                             /* itens acima do trilho */
+  padding-left: calc(var(--sb-pad-x) + var(--sb-icon) + var(--sb-gap));
 }
 
-/* o “inner” vira apenas um wrapper neutro (sem borda/sombra) */
-.panel-hero__inner{
-  background: transparent;       /* sem fundo adicional */
-  border: 0;                     /* remove contorno interno */
-  border-radius: 0;              /* sem segundo raio */
-  box-shadow: none;              /* sem segunda sombra */
-  padding: 0;                    /* padding fica no .panel-hero */
+/* ===== Fallback genérico (quando a estrutura é <ul><ul>...) ===== */
+.sidebar ul ul{ position: relative; }
+.sidebar ul ul::before{
+  content:"";
+  position:absolute;
+  left: var(--rail-left);
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: rgba(255,255,255,.18);
+  pointer-events:none;
+  z-index: 0;
 }
+/* aplica o mesmo recuo aos links/botões do segundo nível */
+.sidebar ul ul > li > a,
+.sidebar ul ul > li > button{
+  position: relative;
+  z-index: 1;
+  padding-left: calc(var(--sb-pad-x) + var(--sb-icon) + var(--sb-gap));
+}
+
+/* (Opcional) Se algum ícone do subitem estiver sumindo, remova este hide: */
+/* .group__children .sidebar__item svg{ display:none; } */

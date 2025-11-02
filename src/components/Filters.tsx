@@ -1,10 +1,20 @@
+// src/components/Filters.tsx
 export default function Filters() {
   return (
-    <section className='flex flex-wrap items-end gap-4' aria-label='Filtros'>
-      {/* ==================== Macroprocesso ==================== */}
-      <label className='flex flex-col text-[13px] text-[var(--muted)]'>
-        <span className='mb-[4px] font-medium'>Macroprocesso</span>
-        <select className='w-[220px] h-[38px] rounded-lg border border-[var(--line)] bg-white px-3 text-[14px] text-[var(--text)] focus:outline-none focus:ring-1 focus:ring-[var(--side)]'>
+    <section
+      aria-label="Filtros"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+    >
+      {/* Macroprocesso */}
+      <label className="flex flex-col">
+        <span className="mb-1 text-[12px] font-medium text-[rgba(15,23,42,.55)]">
+          Macroprocesso
+        </span>
+        <select
+          className="filter-select w-full"
+          defaultValue="Todos"
+          aria-label="Macroprocesso"
+        >
           <option>Todos</option>
           <option>Facilities</option>
           <option>Viagens</option>
@@ -12,20 +22,32 @@ export default function Filters() {
         </select>
       </label>
 
-      {/* ==================== Tipo ==================== */}
-      <label className='flex flex-col text-[13px] text-[var(--muted)]'>
-        <span className='mb-[4px] font-medium'>Tipo</span>
-        <select className='w-[220px] h-[38px] rounded-lg border border-[var(--line)] bg-white px-3 text-[14px] text-[var(--text)] focus:outline-none focus:ring-1 focus:ring-[var(--side)]'>
+      {/* Tipo */}
+      <label className="flex flex-col">
+        <span className="mb-1 text-[12px] font-medium text-[rgba(15,23,42,.55)]">
+          Tipo
+        </span>
+        <select
+          className="filter-select w-full"
+          defaultValue="Todos"
+          aria-label="Tipo"
+        >
           <option>Todos</option>
           <option>Solicitante</option>
           <option>Aprovador</option>
         </select>
       </label>
 
-      {/* ==================== Status ==================== */}
-      <label className='flex flex-col text-[13px] text-[var(--muted)]'>
-        <span className='mb-[4px] font-medium'>Status</span>
-        <select className='w-[220px] h-[38px] rounded-lg border border-[var(--line)] bg-white px-3 text-[14px] text-[var(--text)] focus:outline-none focus:ring-1 focus:ring-[var(--side)]'>
+      {/* Status */}
+      <label className="flex flex-col">
+        <span className="mb-1 text-[12px] font-medium text-[rgba(15,23,42,.55)]">
+          Status
+        </span>
+        <select
+          className="filter-select w-full"
+          defaultValue="Todos"
+          aria-label="Status"
+        >
           <option>Todos</option>
           <option>Ativo</option>
           <option>Rascunho</option>
@@ -33,10 +55,16 @@ export default function Filters() {
         </select>
       </label>
 
-      {/* ==================== Ordem ==================== */}
-      <label className='flex flex-col text-[13px] text-[var(--muted)]'>
-        <span className='mb-[4px] font-medium'>Ordem</span>
-        <select className='w-[220px] h-[38px] rounded-lg border border-[var(--line)] bg-white px-3 text-[14px] text-[var(--text)] focus:outline-none focus:ring-1 focus:ring-[var(--side)]'>
+      {/* Ordem */}
+      <label className="flex flex-col">
+        <span className="mb-1 text-[12px] font-medium text-[rgba(15,23,42,.55)]">
+          Ordem
+        </span>
+        <select
+          className="filter-select w-full"
+          defaultValue="Mais recentes"
+          aria-label="Ordem"
+        >
           <option>Mais recentes</option>
           <option>Mais antigos</option>
         </select>
