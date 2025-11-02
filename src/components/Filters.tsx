@@ -1,20 +1,11 @@
 // src/components/Filters.tsx
 export default function Filters() {
   return (
-    <section
-      aria-label="Filtros"
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
-    >
+    <section aria-label="Filtros" className="filters">
       {/* Macroprocesso */}
-      <label className="flex flex-col">
-        <span className="mb-1 text-[12px] font-medium text-[rgba(15,23,42,.55)]">
-          Macroprocesso
-        </span>
-        <select
-          className="filter-select w-full"
-          defaultValue="Todos"
-          aria-label="Macroprocesso"
-        >
+      <label>
+        <span className="label">Macroprocesso</span>
+        <select defaultValue="Todos" aria-label="Macroprocesso">
           <option>Todos</option>
           <option>Facilities</option>
           <option>Viagens</option>
@@ -23,15 +14,9 @@ export default function Filters() {
       </label>
 
       {/* Tipo */}
-      <label className="flex flex-col">
-        <span className="mb-1 text-[12px] font-medium text-[rgba(15,23,42,.55)]">
-          Tipo
-        </span>
-        <select
-          className="filter-select w-full"
-          defaultValue="Todos"
-          aria-label="Tipo"
-        >
+      <label>
+        <span className="label">Tipo</span>
+        <select defaultValue="Todos" aria-label="Tipo">
           <option>Todos</option>
           <option>Solicitante</option>
           <option>Aprovador</option>
@@ -39,15 +24,9 @@ export default function Filters() {
       </label>
 
       {/* Status */}
-      <label className="flex flex-col">
-        <span className="mb-1 text-[12px] font-medium text-[rgba(15,23,42,.55)]">
-          Status
-        </span>
-        <select
-          className="filter-select w-full"
-          defaultValue="Todos"
-          aria-label="Status"
-        >
+      <label>
+        <span className="label">Status</span>
+        <select defaultValue="Todos" aria-label="Status">
           <option>Todos</option>
           <option>Ativo</option>
           <option>Rascunho</option>
@@ -56,15 +35,9 @@ export default function Filters() {
       </label>
 
       {/* Ordem */}
-      <label className="flex flex-col">
-        <span className="mb-1 text-[12px] font-medium text-[rgba(15,23,42,.55)]">
-          Ordem
-        </span>
-        <select
-          className="filter-select w-full"
-          defaultValue="Mais recentes"
-          aria-label="Ordem"
-        >
+      <label>
+        <span className="label">Ordem</span>
+        <select defaultValue="Mais recentes" aria-label="Ordem">
           <option>Mais recentes</option>
           <option>Mais antigos</option>
         </select>

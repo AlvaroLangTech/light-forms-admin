@@ -14,59 +14,88 @@ export default function Table({ withTitlebar = true }: TableProps) {
   ];
 
   return (
-    <section className="table">
+    // Wrapper para aplicar as regras ".forms-card .table" do seu CSS
+    <section className="forms-card">
+      {/* Cabeçalho opcional da tabela (não usado no card principal) */}
       {withTitlebar && (
-        <div className="px-6 py-4 border-b border-[var(--line)] bg-[#F9FAFB]">
+        <div className="px-6 py-4 border-b border-[var(--card-border)] bg-[#F8FAFC]">
           <h2 className="text-[18px] font-semibold text-[var(--heading)]">Formulários</h2>
         </div>
       )}
 
-      <div className="overflow-x-auto">
-        <table className="min-w-full text-sm border-collapse">
-          <thead className="bg-[#F8F9FA] border-b border-[var(--line)]">
-            <tr>
-              <th className="w-[38px] px-3 py-3 text-left">
-                <input type="checkbox" aria-label="Selecionar todos" />
-              </th>
-              <th className="px-3 py-3 text-left text-[13px] text-[var(--muted)] font-medium">NOME DO FORMULÁRIO</th>
-              <th className="px-3 py-3 text-left text-[13px] text-[var(--muted)] font-medium">MACROPROCESSO</th>
-              <th className="px-3 py-3 text-left text-[13px] text-[var(--muted)] font-medium">TIPO</th>
-              <th className="px-3 py-3 text-left text-[13px] text-[var(--muted)] font-medium">STATUS</th>
-              <th className="px-3 py-3 text-left text-[13px] text-[var(--muted)] font-medium">ABERTURA</th>
-              <th className="w-[60px] px-3 py-3 text-right text-[13px] text-[var(--muted)] font-medium">Ações</th>
-            </tr>
-          </thead>
-
-          <tbody className="divide-y divide-[var(--line)]">
-            {rows.map((r, i) => (
-              <tr key={i} className="hover:bg-[#F9FAFB] transition-colors">
-                <td className="px-3 py-3 align-middle">
-                  <input type="checkbox" aria-label={`Selecionar linha ${i + 1}`} />
-                </td>
-                <td className="px-3 py-3 text-[14px] text-[var(--text)]">{r[0]}</td>
-                <td className="px-3 py-3 text-[14px] text-[var(--text)]">{r[1]}</td>
-                <td className="px-3 py-3 text-[14px] text-[var(--text)]">{r[2]}</td>
-                <td className="px-3 py-3">
-                  <span className="inline-block bg-[#E8F6EE] text-[#1F8A53] text-[12px] font-medium px-3 py-[2px] rounded-full">
-                    {r[3]}
-                  </span>
-                </td>
-                <td className="px-3 py-3 text-[14px] text-[var(--text)]">{r[4]}</td>
-                <td className="px-3 py-3 text-right">
-                  <button
-                    aria-label="Mais ações"
-                    className="text-[18px] text-[var(--muted)] hover:text-[var(--text)] transition"
-                  >
-                    ⋮
-                  </button>
-                </td>
+      {/* Container visual da tabela (classe .table é estilizada no CSS) */}
+      <div className="table">
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-sm border-collapse">
+            <thead>
+              <tr>
+                <th className="w-[40px] px-3 py-3 text-left align-middle">
+                  <input type="checkbox" aria-label="Selecionar todos" />
+                </th>
+                <th className="px-3 py-3 text-left text-[12px] font-semibold text-[rgba(15,23,42,.60)]">
+                  NOME DO FORMULÁRIO
+                </th>
+                <th className="px-3 py-3 text-left text-[12px] font-semibold text-[rgba(15,23,42,.60)]">
+                  MACROPROCESSO
+                </th>
+                <th className="px-3 py-3 text-left text-[12px] font-semibold text-[rgba(15,23,42,.60)]">
+                  TIPO
+                </th>
+                <th className="px-3 py-3 text-left text-[12px] font-semibold text-[rgba(15,23,42,.60)]">
+                  STATUS
+                </th>
+                <th className="px-3 py-3 text-left text-[12px] font-semibold text-[rgba(15,23,42,.60)]">
+                  ABERTURA
+                </th>
+                <th className="w-[40px] px-3 py-3 text-center text-[12px] font-semibold text-transparent">
+                  Ações
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {rows.map((r, i) => (
+                <tr key={i} className="hover:bg-[#FAFBFC] transition-colors">
+                  <td className="px-3 py-3 align-middle">
+                    <input type="checkbox" aria-label={`Selecionar linha ${i + 1}`} />
+                  </td>
+
+                  <td className="px-3 py-3 text-[14px] text-[var(--text)]">
+                    {r[0]}
+                  </td>
+
+                  <td className="px-3 py-3 text-[14px] text-[var(--text)]">
+                    {r[1]}
+                  </td>
+
+                  <td className="px-3 py-3 text-[14px] text-[var(--text)]">
+                    {r[2]}
+                  </td>
+
+                  <td className="px-3 py-3">
+                    <span className="badge badge--ativo">{r[3]}</span>
+                  </td>
+
+                  <td className="px-3 py-3 text-[14px] text-[var(--text)]">
+                    {r[4]}
+                  </td>
+
+                  <td className="px-3 py-3 text-center">
+                    <button
+                      aria-label="Mais ações"
+                      className="text-[18px] text-[var(--muted)] hover:text-[var(--text)] transition"
+                    >
+                      ⋮
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      {/* ❌ Removido: bloco de paginação interna */}
+      {/* ❌ Sem paginação aqui — ela fica fora, no FormsPage, colada ao card */}
     </section>
   );
 }

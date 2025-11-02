@@ -26,7 +26,7 @@
   --topbar-h:68px;
   --sidebar-w:256px;
   --input-h:38px;
-  --container:1100px;
+  --container:1200px;
 
   --radius:10px;
   --radius-lg:12px;
@@ -115,7 +115,31 @@ button{background:none;border:0;cursor:pointer}
 /* ============================================================
    🧩 MAIN
 ============================================================ */
-main{margin-left:var(--sidebar-w);background:var(--bg);min-height:100vh;position:relative;z-index:1;transition:margin-left .25s}
+main{
+  margin-left:var(--sidebar-w);
+  background:var(--bg);
+  min-height:100vh;
+  position:relative;
+  z-index:1;
+  transition:margin-left .25s;
+}
+
+/* ——— Layout encostado na sidebar, ocupando a área útil ——— */
+.main-encostado{
+  padding-top:calc(var(--topbar-h) + 24px); /* garante que o H1 não fique sob a topbar */
+  padding-right:28px;
+  padding-bottom:40px;
+  padding-left:24px;
+  background:var(--bg);
+}
+.main-encostado .page-inner{
+  width:calc(100vw - var(--sidebar-w) - 48px); /* 24px + 24px dos paddings */
+  max-width:var(--container);
+  margin:0; /* nada de mx-auto aqui */
+}
+.main-encostado .page-inner > header[aria-label="Cabeçalho da página"]{
+  margin-bottom:14px; /* respiro entre o H1 e os cards */
+}
 
 /* ============================================================
    🧊 PAINEL “CRIAR E GERENCIAR” — card ÚNICO
@@ -123,9 +147,7 @@ main{margin-left:var(--sidebar-w);background:var(--bg);min-height:100vh;position
 .panel-hero{
   background:#fff;border:0;border-radius:12px;box-shadow:0 6px 16px rgba(16,24,40,.08);padding:20px 24px;
 }
-.panel-hero__inner{
-  background:transparent;border:0;border-radius:0;box-shadow:none;padding:0;
-}
+.panel-hero__inner{background:transparent;border:0;border-radius:0;box-shadow:none;padding:0}
 
 /* Cartões de ação */
 .action-card{
@@ -144,9 +166,7 @@ main{margin-left:var(--sidebar-w);background:var(--bg);min-height:100vh;position
 /* ============================================================
    🎯 Card "Formulários" — ajustes finos (ref)
 ============================================================ */
-section[aria-label="Lista de formulários"] .card-head{
-  background:#fff !important;
-}
+section[aria-label="Lista de formulários"] .card-head{background:#fff!important}
 section[aria-label="Lista de formulários"] .filters-row{background:#fff!important;border-color:var(--card-border)!important}
 
 /* Tabela dentro do card: sem mini-card */
@@ -253,6 +273,56 @@ tbody tr:hover{background:#f9fafb;transition:background .15s}
   z-index: 1;
   padding-left: calc(var(--sb-pad-x) + var(--sb-icon) + var(--sb-gap));
 }
-
 /* (Opcional) Se algum ícone do subitem estiver sumindo, remova este hide: */
 /* .group__children .sidebar__item svg{ display:none; } */
+
+/* ============================================================
+   🔽 FILTROS (estilo igual ao mock)
+============================================================ */
+.filters{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4 colunas iguais */
+  gap: 16px 20px;                                   /* linha x coluna */
+  align-items: end;
+}
+.filters label{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;                /* distância label → campo */
+}
+.filters .label{
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(15,23,42,.60); /* cinza do mock */
+}
+/* Campo select branco, com borda e leve sombra */
+.filters select{
+  height: 40px;
+  background: #fff;
+  color: #0f172a;
+  border: 1px solid #E5E7EB;        /* hairline */
+  border-radius: 10px;
+  padding: 0 34px 0 12px;           /* espaço pro caret à direita */
+  box-shadow: 0 1px 0 rgba(16,24,40,.02); /* leve “alto” */
+  font-size: 14px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 1.5L6 5.5L10.5 1.5' stroke='%2394A3B8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px 7px;
+  transition: border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+.filters select:hover{ border-color:#E2E8F0 }
+.filters select:focus{
+  border-color:#0D5452;                 /* brand */
+  box-shadow:0 0 0 3px rgba(13,84,82,.12); /* anel suave */
+  outline:none;
+}
+/* Responsivo */
+@media (max-width:1024px){ .filters{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width:640px){ .filters{ grid-template-columns: 1fr; } }
+
+/* Remove a hairline da ÚLTIMA linha da tabela quando estiver no card "Formulários" */
+.forms-card table tbody tr:last-child td{ border-bottom:0!important }
+/* Garante que não aparece “bordinha” entre tabela e paginação */
+.forms-card .panel__pagin{ border-top:0!important;background:#fff!important }
