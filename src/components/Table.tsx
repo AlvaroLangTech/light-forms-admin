@@ -1,7 +1,10 @@
-// src/components/Table.tsx
-type TableProps = { withTitlebar?: boolean };
+type TableProps = {
+  withTitlebar?: boolean;
+  /** Quando true, não renderiza o wrapper .forms-card (usa só a tabela). */
+  embedded?: boolean;
+};
 
-export default function Table({ withTitlebar = true }: TableProps) {
+export default function Table({ withTitlebar = true, embedded = false }: TableProps) {
   const rows: [string, string, string, string, string][] = [
     ['Mobiliário Extra / Manutenção de Mobiliário', 'Facilities', 'Solicitante', 'Ativo', '12/05/2025'],
     ['Manutenção Predial', 'Facilities', 'Solicitante', 'Ativo', '12/05/2025'],
@@ -13,89 +16,83 @@ export default function Table({ withTitlebar = true }: TableProps) {
     ['Utilização de veículo do Pool (Marechal Floriano)', 'Frota e Mobilidade', 'Solicitante', 'Ativo', '12/05/2025'],
   ];
 
+  const TableInner = (
+    <div className="table-outlined">
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm border-collapse">
+          <thead>
+  <tr>
+    <th className="th-plain w-[40px] px-3 py-3 text-left align-middle">
+      <input type="checkbox" aria-label="Selecionar todos" />
+    </th>
+
+    <th className="th-strong px-3 py-3 text-left text-[12px] text-[rgba(15,23,42,.60)]">
+      NOME DO FORMULÁRIO
+    </th>
+    <th className="th-strong px-3 py-3 text-left text-[12px] text-[rgba(15,23,42,.60)]">
+      MACROPROCESSO
+    </th>
+    <th className="th-strong px-3 py-3 text-left text-[12px] text-[rgba(15,23,42,.60)]">
+      TIPO
+    </th>
+    <th className="th-strong px-3 py-3 text-left text-[12px] text-[rgba(15,23,42,.60)]">
+      STATUS
+    </th>
+    <th className="th-strong px-3 py-3 text-left text-[12px] text-[rgba(15,23,42,.60)]">
+      ABERTURA
+    </th>
+
+    <th className="th-plain w-[40px] px-3 py-3 text-center text-[12px] text-transparent">
+      Ações
+    </th>
+  </tr>
+</thead>
+
+          <tbody>
+            {rows.map((r, i) => (
+              <tr key={i} className="hover:bg-[#FAFBFC] transition-colors">
+                <td className="px-3 py-3 align-middle">
+                  <input type="checkbox" aria-label={`Selecionar linha ${i + 1}`} />
+                </td>
+
+                <td className="px-3 py-3 text-[14px] text-[var(--text)]">{r[0]}</td>
+                <td className="px-3 py-3 text-[14px] text-[var(--text)]">{r[1]}</td>
+                <td className="px-3 py-3 text-[14px] text-[var(--text)]">{r[2]}</td>
+
+                <td className="px-3 py-3">
+                  <span className="badge badge--ativo">{r[3]}</span>
+                </td>
+
+                <td className="px-3 py-3 text-[14px] text-[var(--text)]">{r[4]}</td>
+
+                <td className="px-3 py-3 text-center">
+                  <button
+                    aria-label="Mais ações"
+                    className="text-[18px] text-[var(--muted)] hover:text-[var(--text)] transition"
+                  >
+                    ⋮
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+
+  if (embedded) {
+    return TableInner;
+  }
+
   return (
-    // Wrapper para aplicar as regras ".forms-card .table" do seu CSS
-    <section className="forms-card">
-      {/* Cabeçalho opcional da tabela (não usado no card principal) */}
+    <section className="forms-card w-full">
       {withTitlebar && (
         <div className="px-6 py-4 border-b border-[var(--card-border)] bg-[#F8FAFC]">
           <h2 className="text-[18px] font-semibold text-[var(--heading)]">Formulários</h2>
         </div>
       )}
-
-      {/* Container visual da tabela (classe .table é estilizada no CSS) */}
-      <div className="table">
-        <div className="overflow-x-auto">
-          <table className="min-w-full text-sm border-collapse">
-            <thead>
-              <tr>
-                <th className="w-[40px] px-3 py-3 text-left align-middle">
-                  <input type="checkbox" aria-label="Selecionar todos" />
-                </th>
-                <th className="px-3 py-3 text-left text-[12px] font-semibold text-[rgba(15,23,42,.60)]">
-                  NOME DO FORMULÁRIO
-                </th>
-                <th className="px-3 py-3 text-left text-[12px] font-semibold text-[rgba(15,23,42,.60)]">
-                  MACROPROCESSO
-                </th>
-                <th className="px-3 py-3 text-left text-[12px] font-semibold text-[rgba(15,23,42,.60)]">
-                  TIPO
-                </th>
-                <th className="px-3 py-3 text-left text-[12px] font-semibold text-[rgba(15,23,42,.60)]">
-                  STATUS
-                </th>
-                <th className="px-3 py-3 text-left text-[12px] font-semibold text-[rgba(15,23,42,.60)]">
-                  ABERTURA
-                </th>
-                <th className="w-[40px] px-3 py-3 text-center text-[12px] font-semibold text-transparent">
-                  Ações
-                </th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {rows.map((r, i) => (
-                <tr key={i} className="hover:bg-[#FAFBFC] transition-colors">
-                  <td className="px-3 py-3 align-middle">
-                    <input type="checkbox" aria-label={`Selecionar linha ${i + 1}`} />
-                  </td>
-
-                  <td className="px-3 py-3 text-[14px] text-[var(--text)]">
-                    {r[0]}
-                  </td>
-
-                  <td className="px-3 py-3 text-[14px] text-[var(--text)]">
-                    {r[1]}
-                  </td>
-
-                  <td className="px-3 py-3 text-[14px] text-[var(--text)]">
-                    {r[2]}
-                  </td>
-
-                  <td className="px-3 py-3">
-                    <span className="badge badge--ativo">{r[3]}</span>
-                  </td>
-
-                  <td className="px-3 py-3 text-[14px] text-[var(--text)]">
-                    {r[4]}
-                  </td>
-
-                  <td className="px-3 py-3 text-center">
-                    <button
-                      aria-label="Mais ações"
-                      className="text-[18px] text-[var(--muted)] hover:text-[var(--text)] transition"
-                    >
-                      ⋮
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* ❌ Sem paginação aqui — ela fica fora, no FormsPage, colada ao card */}
+      {TableInner}
     </section>
   );
 }

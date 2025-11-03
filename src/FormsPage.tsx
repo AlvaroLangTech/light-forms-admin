@@ -1,12 +1,27 @@
 // src/FormsPage.tsx
+import { useState } from "react";
 import ActionCards from "./components/ActionCards";
 import Filters from "./components/Filters";
 import Table from "./components/Table";
 
 export default function FormsPage() {
+  const [page, setPage] = useState<number>(1);
+  const totalPages = 12; // exemplo
+
+  // sequência fixa: 1..6, depois "…"
+  const displayPages: (number | "...")[] =
+    totalPages <= 6
+      ? Array.from({ length: totalPages }, (_, i) => i + 1)
+      : [1, 2, 3, 4, 5, 6, "..."];
+
+  const goto = (p: number) => {
+    if (p < 1 || p > totalPages) return;
+    setPage(p);
+    // fetch da tabela por página (se precisar)
+  };
+
   return (
     <main className="main-encostado">
-      {/* ⚠️ nada de max-w/ mx-auto aqui */}
       <div className="page-inner space-y-7">
         {/* Cabeçalho */}
         <header aria-label="Cabeçalho da página" className="pt-1">
@@ -45,25 +60,52 @@ export default function FormsPage() {
             <Table withTitlebar={false} />
           </div>
 
+          {/* Paginação colada ao card */}
           <div className="panel__pagin">
             <nav className="pagination" aria-label="Paginação">
-              <button type="button" className="page-link prev" aria-label="Voltar">
+              {/* Prev */}
+              <button
+                type="button"
+                className="page-link prev"
+                aria-label="Voltar"
+                onClick={() => goto(page - 1)}
+                disabled={page === 1}
+              >
                 <svg viewBox="0 0 24 24" className="caret" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M15 18l-6-6 6-6" />
                 </svg>
                 <span className="sr-only sm:not-sr-only">Voltar</span>
               </button>
 
+              {/* Números 1..6 + “…” */}
               <div className="pages">
-                <button type="button" className="page-btn is-current" aria-current="page">1</button>
-                <button type="button" className="page-btn">2</button>
-                <button type="button" className="page-btn">3</button>
-                <button type="button" className="page-btn">4</button>
-                <button type="button" className="page-btn">5</button>
-                <button type="button" className="page-btn">6</button>
+                {displayPages.map((it, idx) =>
+                  it === "..." ? (
+                    <span key={`e-${idx}`} className="page-ellipsis" aria-hidden="true">
+                      …
+                    </span>
+                  ) : (
+                    <button
+                      key={it}
+                      type="button"
+                      className={`page-btn ${it === page ? "is-current" : ""}`}
+                      aria-current={it === page ? "page" : undefined}
+                      onClick={() => goto(it as number)}
+                    >
+                      {it}
+                    </button>
+                  )
+                )}
               </div>
 
-              <button type="button" className="page-link next" aria-label="Próximo">
+              {/* Next */}
+              <button
+                type="button"
+                className="page-link next"
+                aria-label="Próximo"
+                onClick={() => goto(page + 1)}
+                disabled={page === totalPages}
+              >
                 <span className="sr-only sm:not-sr-only">Próximo</span>
                 <svg viewBox="0 0 24 24" className="caret" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M9 6l6 6-6 6" />

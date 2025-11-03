@@ -122,11 +122,6 @@ const NAV: (NavItem | NavGroup)[] = [
       { label: "FAQ", icon: IcFolder }
     ]
   },
-  // bloco final
-  {
-    title: "Administração",
-    items: [{ label: "Configurações", icon: IcGear }]
-  }
 ];
 
 /* ---------- Componente ---------- */

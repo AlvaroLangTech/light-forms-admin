@@ -2,6 +2,7 @@
 import Topbar from './components/Topbar';
 import Sidebar from './components/Sidebar';
 import FormsPage from './FormsPage';
+import SiteFooter from "./components/SiteFooter";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
 
       {/* Conteúdo principal com offset da sidebar/topbar aplicado no FormsPage */}
       <FormsPage />
+      <SiteFooter />
     </div>
   );
 }
